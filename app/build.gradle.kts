@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.ViewBinding
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,7 +7,9 @@ plugins {
 
 android {
     namespace = "com.example.dunifilm"
-    compileSdk = 35
+    compileSdk = 36
+
+    buildFeatures { viewBinding = true }
 
     defaultConfig {
         applicationId = "com.example.dunifilm"
