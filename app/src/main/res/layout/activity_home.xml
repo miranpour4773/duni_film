@@ -3,18 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#34344A"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#34344A"
     tools:context=".HomeActivity">
 
+    <!-- AppBar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#00000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
@@ -30,8 +29,6 @@
                 android:clickable="true"
                 android:focusable="true"
                 app:cardCornerRadius="50dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:strokeWidth="0dp">
 
                 <ImageView
@@ -41,12 +38,10 @@
                     android:src="@drawable/ic_menu" />
             </com.google.android.material.card.MaterialCardView>
 
-
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-
                 android:layout_marginEnd="21dp"
                 android:backgroundTint="#00FFFFFF"
                 android:clickable="true"
@@ -60,10 +55,11 @@
                     android:layout_gravity="center"
                     android:src="@drawable/ic_alarm" />
             </com.google.android.material.card.MaterialCardView>
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-
+    <!-- Search Box -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="361dp"
@@ -88,34 +84,51 @@
             android:textColorHint="#9E756B6B" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Chip Group -->
     <com.google.android.material.chip.ChipGroup
-        android:orientation="horizontal"
+        android:layout_marginStart="19dp"
         android:id="@+id/chip_group_categories"
-        android:layout_marginTop="213dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="213dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-<com.google.android.material.chip.Chip
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
+
+
+        <com.google.android.material.chip.Chip
+            app:chipBackgroundColor="#34344A"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="all category"
+            android:textColor="@color/white"
+            app:chipIcon="@drawable/ic_all_category"
+            app:chipIconSize="18dp"
+            app:chipIconTint="@color/white"
+            app:chipIconVisible="true"
+            app:chipStartPadding="15dp"
+            app:chipStrokeColor="@color/white"
+            app:chipStrokeWidth="1dp" />
     </com.google.android.material.chip.ChipGroup>
 
+    <!-- Now Playing Text -->
     <TextView
-        android:layout_marginStart="16dp"
         android:id="@+id/txt_now_playing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="280dp"
         android:fontFamily="@font/poppins_semi_bold"
-        android:text="Now playin"
+        android:text="Now Playing"
         android:textColor="@color/white"
         android:textFontWeight="600"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Playing Image -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
         android:layout_width="361dp"
@@ -129,6 +142,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearance="@style/corner_playing_image" />
 
+    <!-- HD Label -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="26dp"
@@ -140,62 +154,320 @@
         app:layout_constraintTop_toTopOf="@+id/shapeableImageView">
 
         <TextView
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:textSize="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:fontFamily="@font/poppins_medium"
             android:text="HD"
-            app:layout_constraintBottom_toBottomOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toTopOf="@+id/cardView" />
-
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </androidx.cardview.widget.CardView>
 
+    <!-- Rating -->
     <androidx.cardview.widget.CardView
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="#FF0000"
         android:layout_width="42dp"
         android:layout_height="19dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="#FF0000"
         app:layout_constraintEnd_toEndOf="@+id/shapeableImageView"
         app:layout_constraintTop_toTopOf="@+id/cardView">
+
         <RatingBar
             android:id="@+id/ratingBar"
-            android:layout_gravity="center_vertical"
-            android:rating="@integer/material_motion_duration_long_1"
-            android:stepSize="1"
-            android:progressTint="@color/white"
-            android:numStars="1"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:numStars="1"
+            android:progressTint="@color/white"
+            android:rating="1"
+            android:stepSize="1" />
+
         <TextView
-            android:layout_marginEnd="5dp"
             android:id="@+id/txt_rating"
-            android:fontFamily="@font/poppins_semi_bold"
-            android:textSize="12sp"
-            android:layout_gravity="end|center_vertical"
-            android:textColor="@color/white"
-            android:text="8.5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="8.5"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </androidx.cardview.widget.CardView>
 
+    <!-- Playing Movie Name -->
     <TextView
         android:id="@+id/palying_movie_name"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:layout_marginBottom="28dp"
-        android:layout_marginStart="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="John Wick:Chapter 4"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="John Wick: Chapter 4"
         android:textColor="@color/white"
         android:textSize="16.4sp"
         app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
         app:layout_constraintStart_toStartOf="@+id/shapeableImageView" />
+
+    <!-- Nested ScrollView for content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="21dp"
+            android:paddingEnd="21dp">
+
+            <!-- Trending Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="Trending"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/v_all_trending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="218dp"
+                    android:text="View all"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_trending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false" />
+
+            <!-- New Release - Movies Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="New Release - Movies"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/v_all_newRelease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="95dp"
+                    android:text="View all"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_popular"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false" />
+
+
+            <!-- New Release - TV Show Section -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="New Release - Movies"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/v_all_tv_show"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="95dp"
+                    android:text="View all"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_tv_show"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false" />
+
+            <!-- Recommended Section -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="Recommended"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/v_all_Recommended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="95dp"
+                    android:text="View all"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_Recommended"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Custom Bottom Navigation -->
+    <View
+        android:id="@+id/view"
+        android:layout_width="361dp"
+        android:layout_height="54dp"
+        android:background="@drawable/shape_bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="361dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view">
+
+        <!-- Home -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="100dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_home" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Home"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Watchlist -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="82dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_watchlist" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Watchlist"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Profile -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_profile" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Profile"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
