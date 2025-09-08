@@ -85,33 +85,45 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Chip Group -->
-    <com.google.android.material.chip.ChipGroup
-        android:layout_marginStart="19dp"
-        android:id="@+id/chip_group_categories"
-        android:layout_width="match_parent"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="213dp"
-        android:orientation="horizontal"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <com.google.android.material.chip.Chip
-            app:chipBackgroundColor="#34344A"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+        <com.google.android.material.chip.ChipGroup
+            android:paddingEnd="35dp"
+            android:id="@+id/chip_group_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="all category"
-            android:textColor="@color/white"
-            app:chipIcon="@drawable/ic_all_category"
-            app:chipIconSize="18dp"
-            app:chipIconTint="@color/white"
-            app:chipIconVisible="true"
-            app:chipStartPadding="15dp"
-            app:chipStrokeColor="@color/white"
-            app:chipStrokeWidth="1dp" />
-    </com.google.android.material.chip.ChipGroup>
+            android:layout_marginStart="19dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:singleLine="true">
+
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="all category"
+                android:textColor="@color/white"
+                app:chipBackgroundColor="#34344A"
+                app:chipIcon="@drawable/ic_all_category"
+                app:chipIconSize="18dp"
+                app:chipIconTint="@color/white"
+                app:chipIconVisible="true"
+                app:chipStartPadding="15dp"
+                app:chipStrokeColor="@color/white"
+                app:chipStrokeWidth="1dp" />
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
 
     <!-- Now Playing Text -->
     <TextView
@@ -225,8 +237,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="21dp"
-            android:paddingEnd="21dp">
+            android:paddingStart="21dp">
 
             <!-- Trending Section -->
             <LinearLayout
@@ -372,6 +383,7 @@
         android:id="@+id/view"
         android:layout_width="361dp"
         android:layout_height="54dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/shape_bottom_navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
