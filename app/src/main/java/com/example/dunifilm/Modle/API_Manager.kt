@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class API_Manager {
-     var apiService: ApiServices
+    var apiService: ApiServices
 
     init {
         val retrofit = Retrofit
@@ -35,6 +35,27 @@ class API_Manager {
             }
 
             override fun onFailure(call: Call<List<Genres>>, t: Throwable) {
+                apiCallBack.onError(t.message.toString())
+            }
+        })
+    }
+
+
+    fun getMovies(genreId: Int, apiCallBack: apiCallBack<Movie>) {
+        apiService.getMovies(genreId).enqueue(object : Callback<Movie> {
+            override fun onResponse(
+                call: Call<Movie>,
+                response: Response<Movie>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    apiCallBack.onSuccess(body)
+                } else {
+                    apiCallBack.onError("Response body is null or not successful")
+                }
+            }
+
+            override fun onFailure(call: Call<Movie>, t: Throwable) {
                 apiCallBack.onError(t.message.toString())
             }
         })
