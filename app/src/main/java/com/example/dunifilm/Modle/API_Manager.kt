@@ -41,8 +41,8 @@ class API_Manager {
     }
 
 
-    fun getMovies(genreId: Int, apiCallBack: apiCallBack<Movie>) {
-        apiService.getMovies(genreId).enqueue(object : Callback<Movie> {
+    fun getMovies(genreId: Int , page : Int = 1, apiCallBack: apiCallBack<Movie>) {
+        apiService.getMovies(genreId ,page).enqueue(object : Callback<Movie> {
             override fun onResponse(
                 call: Call<Movie>,
                 response: Response<Movie>
@@ -58,6 +58,24 @@ class API_Manager {
             override fun onFailure(call: Call<Movie>, t: Throwable) {
                 apiCallBack.onError(t.message.toString())
             }
+        })
+    }
+
+    fun searchMovies(name:String, apiCallBack: apiCallBack<Movie>){
+        apiService.searchMovies(name).enqueue(object :Callback<Movie>{
+            override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
+                val body = response.body()
+                if (body != null){
+                    apiCallBack.onSuccess(body)
+                }
+                apiCallBack.onError("Response body is null or not successful")
+
+            }
+
+            override fun onFailure(call: Call<Movie>, t: Throwable) {
+                apiCallBack.onError("Response body is null or not successful")
+            }
+
         })
     }
 

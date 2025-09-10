@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dunifilm.Modle.Movie
 import com.example.dunifilm.databinding.ItemRecyclerViewBinding
+import com.example.dunifilm.databinding.ItemRecyclerrViewBinding
 
-class Crime_Recycler_Adpter(val data: List<Movie.Data>) :
-    RecyclerView.Adapter<Crime_Recycler_Adpter.CrimeViewHolder>() {
+class Special_Genres_Adpter(val data: List<Movie.Data>) :
+    RecyclerView.Adapter<Special_Genres_Adpter.ViewHolder>() {
 
-    inner class CrimeViewHolder(val binding: ItemRecyclerViewBinding) :
+    inner class ViewHolder(val binding: ItemRecyclerrViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(position: Int) {
             val item = data[position]
@@ -24,15 +25,15 @@ class Crime_Recycler_Adpter(val data: List<Movie.Data>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CrimeViewHolder(binding)
+            ItemRecyclerrViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = 5
+    override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: CrimeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindData(position)
     }
 }

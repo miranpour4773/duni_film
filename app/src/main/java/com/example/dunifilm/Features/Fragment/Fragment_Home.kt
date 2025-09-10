@@ -1,23 +1,33 @@
 package com.example.dunifilm.Features.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dunifilm.Features.Fragment.Adapter.Crime_Recycler_Adpter
+import com.bumptech.glide.disklrucache.DiskLruCache.Editor
+import com.example.dunifilm.Features.Fragment.Adapter.Recycler_Adpter
+import com.example.dunifilm.Features.Movie_Activty
+import com.example.dunifilm.Features.Search_Activity
 import com.example.dunifilm.Modle.API_Manager
 import com.example.dunifilm.Modle.Genres
 import com.example.dunifilm.Modle.Movie
+import com.example.dunifilm.Modle.keyGenres
+import com.example.dunifilm.Modle.keyGenresName
+import com.example.dunifilm.Modle.keySearch
 import com.example.dunifilm.R
 import com.example.dunifilm.databinding.HomeFragmentBinding
 import com.google.android.material.chip.Chip
 
 class Fragment_Home : Fragment() {
+
     val api_manager = API_Manager()
     lateinit var binding: HomeFragmentBinding
     override fun onCreateView(
@@ -31,9 +41,59 @@ class Fragment_Home : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initUi()
+
+//        binding.edtSearch.setOnEditorActionListener { textView, actionId, keyEvent ->
+//            val query = binding.edtSearch.text?.toString()
+//            if (!query.isNullOrEmpty()) {
+//                val intent = Intent(requireContext() , Search_Activity::class.java)
+//                intent.putExtra(keySearch,query)
+//                startActivity(intent)
+//            }else{
+//                false
+//            }
+//            true
+//        }
+
+
+//        binding.edtSearch.setOnFocusChangeListener { view, b ->
+//            if (b) {
+//
+//            }
+//        }
+
+
+        binding.vAllCrime.setOnClickListener {
+            setonClickviewAll("Crime", 1)
+        }
+
+        binding.vAllAction.setOnClickListener {
+            setonClickviewAll("Action", 3)
+        }
+
+        binding.vAllSport.setOnClickListener {
+            setonClickviewAll("Sport", 21)
+        }
+
+        binding.vAllHorror.setOnClickListener {
+            setonClickviewAll("Horror", 17)
+        }
+
+        binding.vAllBiography.setOnClickListener {
+            setonClickviewAll("Biography", 4)
+        }
+
+    }
+
+    private fun setonClickviewAll(name: String, position: Int) {
+            val intent = Intent(requireContext(), Movie_Activty::class.java)
+            Log.v("testiiiiiiii" , name)
+            Log.v("testiiiiiiii" , position.toString())
+
+            intent.putExtra(keyGenres, position)
+            intent.putExtra(keyGenresName, name)
+            startActivity(intent)
+
     }
 
 
@@ -52,21 +112,56 @@ class Fragment_Home : Fragment() {
 
 
         dateCrime()
+
+        dateSport()
+
+        dateAction()
+
+        dateBiography()
+
+        dateHistory()
+
+    }
+
+
+    private fun dateSport() {
+        api_manager.getMovies(21, 1, object : API_Manager.apiCallBack<Movie> {
+            override fun onSuccess(data: Movie) {
+                // 'data.data' حاوی لیست فیلم‌ها است
+                binding.recyclerSport.adapter = Recycler_Adpter(data.data)
+                binding.recyclerSport.layoutManager =
+                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+
+            }
+
+            override fun onError(errorMessage: String) {
+                Toast.makeText(
+                    requireContext(),
+                    "خطا در دریافت فیلم‌ها: $errorMessage",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
     private fun dateCrime() {
         // شناسه ژانر (genreId) را برای دریافت فیلم‌های مورد نظر مشخص کنید
         // در اینجا به عنوان مثال از ID=1 استفاده شده است
-        api_manager.getMovies(1, object : API_Manager.apiCallBack<Movie> {
+        api_manager.getMovies(1, 1, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
                 // 'data.data' حاوی لیست فیلم‌ها است
-                binding.recyclerCrime.adapter = Crime_Recycler_Adpter(data.data)
-                binding.recyclerCrime.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL , false)
+                binding.recyclerCrime.adapter = Recycler_Adpter(data.data)
+                binding.recyclerCrime.layoutManager =
+                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
             }
 
             override fun onError(errorMessage: String) {
-                Toast.makeText(requireContext(), "خطا در دریافت فیلم‌ها: $errorMessage", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "خطا در دریافت فیلم‌ها: $errorMessage",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
@@ -81,4 +176,68 @@ class Fragment_Home : Fragment() {
             binding.chipGroupCategories.addView(chip)
         }
     }
+
+    private fun dateAction() {
+        api_manager.getMovies(3, 1, object : API_Manager.apiCallBack<Movie> {
+            override fun onSuccess(data: Movie) {
+                // 'data.data' حاوی لیست فیلم‌ها است
+                binding.recyclerAction.adapter = Recycler_Adpter(data.data)
+                binding.recyclerAction.layoutManager =
+                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+
+            }
+
+            override fun onError(errorMessage: String) {
+                Toast.makeText(
+                    requireContext(),
+                    "خطا در دریافت فیلم‌ها: $errorMessage",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
+    private fun dateBiography() {
+
+        api_manager.getMovies(4, 1, object : API_Manager.apiCallBack<Movie> {
+            override fun onSuccess(data: Movie) {
+                // 'data.data' حاوی لیست فیلم‌ها است
+                binding.recyclerBiography.adapter = Recycler_Adpter(data.data)
+                binding.recyclerBiography.layoutManager =
+                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+
+            }
+
+            override fun onError(errorMessage: String) {
+                Toast.makeText(
+                    requireContext(),
+                    "خطا در دریافت فیلم‌ها: $errorMessage",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
+
+    private fun dateHistory() {
+        api_manager.getMovies(17, 1, object : API_Manager.apiCallBack<Movie> {
+            override fun onSuccess(data: Movie) {
+                // 'data.data' حاوی لیست فیلم‌ها است
+                binding.recyclerHorror.adapter = Recycler_Adpter(data.data)
+                binding.recyclerHorror.layoutManager =
+                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+
+            }
+
+            override fun onError(errorMessage: String) {
+                Toast.makeText(
+                    requireContext(),
+                    "خطا در دریافت فیلم‌ها: $errorMessage",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
 }
+

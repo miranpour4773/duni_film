@@ -16,4 +16,10 @@ interface ApiServices {
         @Path("genre_id") genreId: Int,
         @Query("page") page: Int = 1
     ):Call<Movie>
+
+    @GET("movies")
+    fun searchMovies(
+        @Query ("q") name:String,
+        @Query("page") page: Int = 1
+    ):Call<Movie>
 }

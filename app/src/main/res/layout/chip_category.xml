@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.MaterialComponents.Chip.Filter"
+    style="@style/Widget.MaterialComponents.Chip.Action"
     app:chipBackgroundColor="#34344A"
     app:chipStrokeWidth="1dp"
     android:layout_marginStart="8dp"
