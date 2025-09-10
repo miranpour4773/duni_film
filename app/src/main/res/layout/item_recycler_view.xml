@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="125dp"
+    android:layout_height="195dp"
+    android:layout_marginEnd="8dp"
+    android:backgroundTint="#00000000"
+    app:cardCornerRadius="8dp">
+
+    <com.google.android.material.card.MaterialCardView
+        app:strokeColor="#11F4F4F4"
+        android:id="@+id/materialCardView2"
+        android:layout_width="125dp"
+        android:layout_height="168dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_movie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_john_wick" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/name"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="medellin"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="2023"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

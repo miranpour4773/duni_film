@@ -7,6 +7,7 @@
 
     <!-- AppBar -->
     <com.google.android.material.appbar.AppBarLayout
+        android:layout_marginTop="20dp"
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +64,7 @@
         android:id="@+id/textInputLayout"
         android:layout_width="361dp"
         android:layout_height="52dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="96dp"
         android:background="@drawable/edt_search_background"
         android:paddingStart="8dp"
         app:hintEnabled="false"
@@ -85,6 +86,7 @@
 
     <!-- Chip Group -->
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="213dp"
@@ -94,12 +96,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.chip.ChipGroup
-            android:paddingEnd="35dp"
             android:id="@+id/chip_group_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
             android:orientation="horizontal"
+            android:paddingEnd="35dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -222,14 +224,15 @@
 
     <!-- Nested ScrollView for content -->
     <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="530dp"
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView">
+        app:layout_constraintTop_toTopOf="@+id/appBarLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -371,7 +374,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false" />
-
 
 
             <LinearLayout

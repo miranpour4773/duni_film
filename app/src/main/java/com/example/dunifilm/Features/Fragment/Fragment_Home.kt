@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.dunifilm.Features.Fragment.Adapter.Crime_Recycler_Adpter
 import com.example.dunifilm.Modle.API_Manager
 import com.example.dunifilm.Modle.Genres
 import com.example.dunifilm.Modle.Movie
@@ -57,10 +60,9 @@ class Fragment_Home : Fragment() {
         api_manager.getMovies(1, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
                 // 'data.data' حاوی لیست فیلم‌ها است
-                val moviesList = data.data
+                binding.recyclerCrime.adapter = Crime_Recycler_Adpter(data.data)
+                binding.recyclerCrime.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL , false)
 
-                // حالا می‌توانید 'moviesList' را به RecyclerView Adapter خود پاس دهید
-                Toast.makeText(requireContext(), "تعداد فیلم‌های بارگذاری شده: ${moviesList.size}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onError(errorMessage: String) {
