@@ -16,11 +16,15 @@
         android:theme="@style/Theme.DuniFilm"
         tools:targetApi="31">
         <activity
-            android:name=".Features.Movie_Activty"
-            android:exported="true">
+            android:name=".Features.Info_Movie_Activity"
+            android:exported="false">
 
         </activity>
+        <activity
+            android:name=".Features.Movie_Activty"
+            android:exported="false">
 
+        </activity>
         <activity
             android:name=".Features.Search_Activity"
             android:exported="false" />
@@ -33,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Features.MainActivity"
             android:exported="false" />

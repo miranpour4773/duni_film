@@ -6,27 +6,24 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.disklrucache.DiskLruCache.Editor
 import com.example.dunifilm.Features.Fragment.Adapter.Recycler_Adpter
+import com.example.dunifilm.Features.Info_Movie_Activity
 import com.example.dunifilm.Features.Movie_Activty
-import com.example.dunifilm.Features.Search_Activity
 import com.example.dunifilm.Modle.API_Manager
 import com.example.dunifilm.Modle.Genres
 import com.example.dunifilm.Modle.Movie
 import com.example.dunifilm.Modle.keyGenres
 import com.example.dunifilm.Modle.keyGenresName
-import com.example.dunifilm.Modle.keySearch
+import com.example.dunifilm.Modle.keySendMovieID
 import com.example.dunifilm.R
 import com.example.dunifilm.databinding.HomeFragmentBinding
 import com.google.android.material.chip.Chip
 
-class Fragment_Home : Fragment() {
+class Fragment_Home : Fragment() , Recycler_Adpter.sendData{
 
     val api_manager = API_Manager()
     lateinit var binding: HomeFragmentBinding
@@ -128,7 +125,7 @@ class Fragment_Home : Fragment() {
         api_manager.getMovies(21, 1, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
                 // 'data.data' حاوی لیست فیلم‌ها است
-                binding.recyclerSport.adapter = Recycler_Adpter(data.data)
+                binding.recyclerSport.adapter = Recycler_Adpter(data.data,this@Fragment_Home)
                 binding.recyclerSport.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
@@ -150,7 +147,7 @@ class Fragment_Home : Fragment() {
         api_manager.getMovies(1, 1, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
                 // 'data.data' حاوی لیست فیلم‌ها است
-                binding.recyclerCrime.adapter = Recycler_Adpter(data.data)
+                binding.recyclerCrime.adapter = Recycler_Adpter(data.data,this@Fragment_Home)
                 binding.recyclerCrime.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
@@ -181,7 +178,7 @@ class Fragment_Home : Fragment() {
         api_manager.getMovies(3, 1, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
                 // 'data.data' حاوی لیست فیلم‌ها است
-                binding.recyclerAction.adapter = Recycler_Adpter(data.data)
+                binding.recyclerAction.adapter = Recycler_Adpter(data.data,this@Fragment_Home)
                 binding.recyclerAction.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
@@ -202,7 +199,7 @@ class Fragment_Home : Fragment() {
         api_manager.getMovies(4, 1, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
                 // 'data.data' حاوی لیست فیلم‌ها است
-                binding.recyclerBiography.adapter = Recycler_Adpter(data.data)
+                binding.recyclerBiography.adapter = Recycler_Adpter(data.data,this@Fragment_Home)
                 binding.recyclerBiography.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
@@ -223,7 +220,7 @@ class Fragment_Home : Fragment() {
         api_manager.getMovies(17, 1, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
                 // 'data.data' حاوی لیست فیلم‌ها است
-                binding.recyclerHorror.adapter = Recycler_Adpter(data.data)
+                binding.recyclerHorror.adapter = Recycler_Adpter(data.data,this@Fragment_Home)
                 binding.recyclerHorror.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
@@ -237,6 +234,12 @@ class Fragment_Home : Fragment() {
                 ).show()
             }
         })
+    }
+
+    override fun clickOnMovie(film_id: Int) {
+        val intent = Intent(requireContext() , Info_Movie_Activity::class.java)
+        intent.putExtra(keySendMovieID,film_id)
+        startActivity(intent)
     }
 
 }

@@ -8,7 +8,7 @@ import com.example.dunifilm.Modle.Movie
 import com.example.dunifilm.databinding.ItemRecyclerViewBinding
 import com.example.dunifilm.databinding.ItemRecyclerrViewBinding
 
-class Special_Genres_Adpter(val data: List<Movie.Data>) :
+class Special_Genres_Adpter(val data: List<Movie.Data>, val senddata: Special_Genres_Adpter.sendData) :
     RecyclerView.Adapter<Special_Genres_Adpter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemRecyclerrViewBinding) :
@@ -22,6 +22,10 @@ class Special_Genres_Adpter(val data: List<Movie.Data>) :
             Glide.with(binding.root)
                 .load(item.poster)
                 .into(binding.imgMovie)
+
+            binding.imgMovie.setOnClickListener {
+                senddata.clickOnMovie(item.id)
+            }
         }
     }
 
@@ -35,5 +39,9 @@ class Special_Genres_Adpter(val data: List<Movie.Data>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindData(position)
+    }
+
+    interface sendData {
+        fun clickOnMovie(film_id: Int)
     }
 }

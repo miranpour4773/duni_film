@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.dunifilm.Modle.Movie
 import com.example.dunifilm.databinding.ItemRecyclerViewBinding
 
-class Recycler_Adpter(val data: List<Movie.Data>) :
+class Recycler_Adpter(val data: List<Movie.Data> , val senddata: sendData) :
     RecyclerView.Adapter<Recycler_Adpter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemRecyclerViewBinding) :
@@ -21,6 +21,10 @@ class Recycler_Adpter(val data: List<Movie.Data>) :
             Glide.with(binding.root)
                 .load(item.poster)
                 .into(binding.imgMovie)
+
+            binding.imgMovie.setOnClickListener {
+                senddata.clickOnMovie(item.id)
+            }
         }
     }
 
@@ -34,5 +38,9 @@ class Recycler_Adpter(val data: List<Movie.Data>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindData(position)
+    }
+
+    interface sendData {
+        fun clickOnMovie(film_id: Int)
     }
 }

@@ -15,11 +15,14 @@ interface ApiServices {
     fun getMovies(
         @Path("genre_id") genreId: Int,
         @Query("page") page: Int = 1
-    ):Call<Movie>
+    ): Call<Movie>
 
     @GET("movies")
     fun searchMovies(
-        @Query ("q") name:String,
+        @Query("q") name: String,
         @Query("page") page: Int = 1
-    ):Call<Movie>
+    ): Call<Movie>
+
+    @GET("movies/{movie_id}")
+    fun getMovieInfo(@Path("movie_id") movieId: Int): Call<Movie_Info>
 }

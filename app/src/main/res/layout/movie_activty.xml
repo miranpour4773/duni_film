@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#34344A"
     tools:context=".Features.Movie_Activty">
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
@@ -25,42 +24,40 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="80dp"
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="150dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_gravity="bottom"
-        android:background="#34344A" />
 
     <com.google.android.material.card.MaterialCardView
+        android:layout_marginStart="120dp"
+        android:layout_marginBottom="80dp"
+        android:id="@+id/materialCardView4"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="80dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_back" />
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView3"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="80dp">
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/layout_number"
@@ -74,11 +71,13 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:layout_marginEnd="120dp"
+        android:id="@+id/materialCardView5"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="80dp">
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView4"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/next"
@@ -88,4 +87,4 @@
             android:rotation="180"
             android:src="@drawable/ic_back" />
     </com.google.android.material.card.MaterialCardView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

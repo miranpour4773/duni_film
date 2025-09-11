@@ -79,6 +79,22 @@ class API_Manager {
         })
     }
 
+
+    fun getMovieInfo(movie_Id:Int , apiCallBack: apiCallBack<Movie_Info>){
+        apiService.getMovieInfo(movie_Id).enqueue(object :Callback<Movie_Info>{
+            override fun onResponse(call: Call<Movie_Info>, response: Response<Movie_Info>) {
+                if (response.body() != null){
+                    apiCallBack.onSuccess(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<Movie_Info>, t: Throwable) {
+                apiCallBack.onError(t.message.toString())
+            }
+
+        })
+    }
+
     interface apiCallBack<T> {
         fun onSuccess(data: T)
         fun onError(errorMessage: String)
