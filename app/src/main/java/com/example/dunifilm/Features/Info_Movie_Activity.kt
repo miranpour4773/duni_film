@@ -1,10 +1,12 @@
 package com.example.dunifilm.Features
 
+import android.app.Dialog
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +25,7 @@ import retrofit2.Response
 
 class Info_Movie_Activity : AppCompatActivity() {
     val apiManager = API_Manager()
+    lateinit var loadingDialog: AlertDialog
     lateinit var binding: ActivityInfoMovieBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,9 @@ class Info_Movie_Activity : AppCompatActivity() {
             PorterDuff.Mode.SRC_ATOP
         )
 
+        createDialog()
+
+
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -51,16 +57,34 @@ class Info_Movie_Activity : AppCompatActivity() {
         apiManager.apiService.getMovieInfo(movieId).enqueue(object : Callback<Movie_Info> {
             override fun onResponse(call: Call<Movie_Info>, response: Response<Movie_Info>) {
                 initUi(response.body()!!)
+                loadingDialog.dismiss()
             }
 
             override fun onFailure(call: Call<Movie_Info>, t: Throwable) {
                 Toast.makeText(this@Info_Movie_Activity, t.message.toString(), Toast.LENGTH_SHORT)
                     .show()
+                loadingDialog.dismiss()
             }
 
         })
 
 
+    }
+
+    private fun createDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.loadinf_dialog, null)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+
+        loadingDialog = builder.create()
+        loadingDialog.window?.setBackgroundDrawableResource(R.color.shafaf)
+        loadingDialog.show()
+
+        val scale = resources.displayMetrics.density
+        val sizePx = (250 * scale).toInt()
+        loadingDialog.window?.setLayout(sizePx, sizePx)
+
+        loadingDialog.setCancelable(false)
     }
 
     fun initUi(movieInfo: Movie_Info) {

@@ -17,7 +17,7 @@ data class Movie_Info(
     @SerializedName("id")
     val id: Int,
     @SerializedName("images")
-    val images: List<String>,
+    val images: List<String>?,
     @SerializedName("imdb_id")
     val imdbId: String,
     @SerializedName("imdb_rating")

@@ -111,6 +111,7 @@
 
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
                 style="@style/Widget.MaterialComponents.Chip.Action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -265,17 +266,29 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
+                        app:rippleColor="#45FFFFFF"
+                        app:strokeWidth="0dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:backgroundTint="@color/shafaf"
                         android:id="@+id/v_all_crime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:text="View all"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:text="View all"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
@@ -312,16 +325,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
+                        app:rippleColor="#45FFFFFF"
+                        app:strokeWidth="0dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:backgroundTint="@color/shafaf"
                         android:id="@+id/v_all_Sport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View all"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="View all"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
@@ -360,16 +385,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
+                        app:rippleColor="#45FFFFFF"
+                        app:strokeWidth="0dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:backgroundTint="@color/shafaf"
                         android:id="@+id/v_all_Action"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View all"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="View all"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -408,16 +445,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
+                        app:rippleColor="#45FFFFFF"
+                        app:strokeWidth="0dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:backgroundTint="@color/shafaf"
                         android:id="@+id/v_all_Biography"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="View all"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" >
+                        <TextView
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="View all"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -454,17 +503,29 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
+                        app:rippleColor="#45FFFFFF"
+                        app:strokeWidth="0dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:backgroundTint="@color/shafaf"
                         android:id="@+id/v_all_Horror"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="218dp"
-                        android:text="View all"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="218dp"
+                            android:text="View all"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

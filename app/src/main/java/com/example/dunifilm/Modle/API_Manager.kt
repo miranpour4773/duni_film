@@ -95,6 +95,23 @@ class API_Manager {
         })
     }
 
+
+    fun getAllMovie(page:Int , apiCallBack: apiCallBack<Movie>){
+        apiService.getAllMovies(page).enqueue(object :Callback<Movie>{
+            override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
+                if (response.body() != null){
+                    val data = response.body()!!
+                    apiCallBack.onSuccess(data)
+                }
+            }
+
+            override fun onFailure(call: Call<Movie>, t: Throwable) {
+                apiCallBack.onError(t.message.toString())
+            }
+
+        })
+    }
+
     interface apiCallBack<T> {
         fun onSuccess(data: T)
         fun onError(errorMessage: String)

@@ -25,4 +25,8 @@ interface ApiServices {
 
     @GET("movies/{movie_id}")
     fun getMovieInfo(@Path("movie_id") movieId: Int): Call<Movie_Info>
+
+    @GET("movies")
+    fun getAllMovies(@Query("page")page: Int):Call<Movie>
+
 }
