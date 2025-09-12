@@ -2,10 +2,10 @@ package com.example.dunifilm.Features.Fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dunifilm.Features.Fragment.Adapter.Recycler_Adpter
 import com.example.dunifilm.Features.Info_Movie_Activity
 import com.example.dunifilm.Features.Movie_Activty
+import com.example.dunifilm.Features.Search_Activity
 import com.example.dunifilm.Modle.API_Manager
 import com.example.dunifilm.Modle.Genres
 import com.example.dunifilm.Modle.Movie
 import com.example.dunifilm.Modle.keyGenres
 import com.example.dunifilm.Modle.keyGenresName
+import com.example.dunifilm.Modle.keySearch
 import com.example.dunifilm.Modle.keySendMovieID
 import com.example.dunifilm.R
 import com.example.dunifilm.databinding.HomeFragmentBinding
@@ -41,24 +43,17 @@ class Fragment_Home : Fragment(), Recycler_Adpter.sendData {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        binding.edtSearch.setOnEditorActionListener { textView, actionId, keyEvent ->
-//            val query = binding.edtSearch.text?.toString()
-//            if (!query.isNullOrEmpty()) {
-//                val intent = Intent(requireContext() , Search_Activity::class.java)
-//                intent.putExtra(keySearch,query)
-//                startActivity(intent)
-//            }else{
-//                false
-//            }
-//            true
-//        }
+
+       binding.edtSearch.setOnFocusChangeListener { view, b ->
+           if (b){
+               val intent = Intent(requireContext(),Search_Activity::class.java)
+               startActivity(intent)
+           }
+       }
 
 
-//        binding.edtSearch.setOnFocusChangeListener { view, b ->
-//            if (b) {
-//
-//            }
-//        }
+
+
 
         binding.chipAll.setOnClickListener {
             setonClickviewAll("All categorys",22)

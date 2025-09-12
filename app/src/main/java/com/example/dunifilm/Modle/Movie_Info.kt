@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName
 
 data class Movie_Info(
     @SerializedName("actors")
-    val actors: String,
+    val actors: String?,
     @SerializedName("awards")
-    val awards: String,
+    val awards: String?,
     @SerializedName("country")
-    val country: String,
+    val country: String?,
     @SerializedName("director")
-    val director: String,
+    val director: String?,
     @SerializedName("genres")
-    val genres: List<String>,
+    val genres: List<String>?,
     @SerializedName("id")
     val id: Int,
     @SerializedName("images")
@@ -27,21 +27,21 @@ data class Movie_Info(
     @SerializedName("metascore")
     val metascore: String,
     @SerializedName("plot")
-    val plot: String,
+    val plot: String?,
     @SerializedName("poster")
-    val poster: String,
+    val poster: String?,
     @SerializedName("rated")
-    val rated: String,
+    val rated: String?,
     @SerializedName("released")
-    val released: String,
+    val released: String?,
     @SerializedName("runtime")
     val runtime: String,
     @SerializedName("title")
-    val title: String,
+    val title: String?,
     @SerializedName("type")
-    val type: String,
+    val type: String?,
     @SerializedName("writer")
-    val writer: String,
+    val writer: String?,
     @SerializedName("year")
-    val year: String
+    val year: String?
 )

@@ -110,7 +110,7 @@ class Info_Movie_Activity : AppCompatActivity() {
             .into(binding.imgPoster)
 
 
-        movieInfo.genres.forEach {
+        movieInfo.genres?.forEach {
             val chip = LayoutInflater.from(this)
                 .inflate(R.layout.chip_genres_of_movie, binding.chipGroup, false) as Chip
             chip.text = it

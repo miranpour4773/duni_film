@@ -13,4 +13,8 @@
     <style name="customDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">@color/shafaf</item>
     </style>
+
+    <style name="textColorSearch" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

@@ -3,7 +3,6 @@ package com.example.dunifilm.Features
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -19,9 +18,6 @@ import com.example.dunifilm.Modle.keyGenresName
 import com.example.dunifilm.Modle.keySendMovieID
 import com.example.dunifilm.R
 import com.example.dunifilm.databinding.MovieActivtyBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class Movie_Activty : AppCompatActivity(), Special_Genres_Adpter.sendData {
     lateinit var listData: List<Movie.Data>
@@ -48,10 +44,10 @@ class Movie_Activty : AppCompatActivity(), Special_Genres_Adpter.sendData {
         supportActionBar?.title = genresName
         if (genresid == 22){
             allmovie(layoutNumberr)
-        }else
-        initUi(layoutNumberr)
+        }else {
+            initUi(layoutNumberr)
 
-
+        }
         binding.next.setOnClickListener {
             if (listData.size == 10) {
                 layoutNumberr += 1
