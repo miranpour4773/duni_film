@@ -18,6 +18,10 @@ The app uses data from [MoviesAPI.ir](https://moviesapi.ir/).
 
 ---
 
+![Image](https://github.com/user-attachments/assets/0915eff4-31c6-4548-a8af-5c63a7f81adf)
+
+---
+
 ## 🛠️ Libraries Used
 - **Retrofit 2.9.0** ([link](https://square.github.io/retrofit/))  
   For API communication and data fetching  
