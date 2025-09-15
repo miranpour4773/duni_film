@@ -18,8 +18,7 @@ The app uses data from [MoviesAPI.ir](https://moviesapi.ir/).
 
 ---
 
-[![Image](https://github.com/user-attachments/assets/0915eff4-31c6-4548-a8af-5c63a7f81adf)](https://github.com/user-attachments/assets/875a3623-d92d-416a-8129-50b39b52ffd5)
-
+![Image](https://github.com/user-attachments/assets/c295027e-d831-475c-b8b6-e30ee4881dfa)
 ---
 
 ## 🛠️ Libraries Used
