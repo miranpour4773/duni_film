@@ -1,7 +1,7 @@
 # 🎬 Movie App
 
 A simple Android application for displaying movie information 🎥  
-Users can browse a list of movies, view details of each movie.
+Users can browse a list of movies, view details of each movie
 ---
 
 ## 📡 API
