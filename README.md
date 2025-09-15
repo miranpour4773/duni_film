@@ -5,6 +5,17 @@ Users can browse a list of movies, view details of each movie
 
 ---
 
+##📱 Screen Shots
+<p float="left">
+  <img src="https://github.com/miranpour4773/duni_film/blob/fc1a530af9ec1338db3dd3904db798b0fcb0d0e0/Screenshot_2025-09-15-09-59-20-330_com.example.dunifilm.jpghttps://github.com/miranpour4773/duni_film/blob/fc1a530af9ec1338db3dd3904db798b0fcb0d0e0/Screenshot_2025-09-15-09-59-20-330_com.example.dunifilm.jpg" width="200" />
+  <img src="https://github.com/miranpour4773/duni_film/blob/fc1a530af9ec1338db3dd3904db798b0fcb0d0e0/Screenshot_2025-09-15-09-59-26-757_com.example.dunifilm.jpg" width="200" />
+  <img src="https://github.com/miranpour4773/duni_film/blob/fc1a530af9ec1338db3dd3904db798b0fcb0d0e0/Screenshot_2025-09-15-09-59-34-319_com.example.dunifilm.jpg" width="200" />
+<img src="https://github.com/miranpour4773/duni_film/blob/fc1a530af9ec1338db3dd3904db798b0fcb0d0e0/Screenshot_2025-09-15-09-59-44-677_com.example.dunifilm.jpg" width="200" />
+<img src="https://github.com/miranpour4773/duni_film/blob/fc1a530af9ec1338db3dd3904db798b0fcb0d0e0/Screenshot_2025-09-15-09-59-59-034_com.example.dunifilm%20(1).jpg" width="200" />
+</p>
+
+--
+
 ## 📡 API
 The app uses data from [MoviesAPI.ir](https://moviesapi.ir/).
 
