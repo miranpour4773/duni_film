@@ -44,19 +44,23 @@ class Fragment_Home : Fragment(), Recycler_Adpter.sendData {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-       binding.edtSearch.setOnFocusChangeListener { view, b ->
-           if (b){
-               val intent = Intent(requireContext(),Search_Activity::class.java)
-               startActivity(intent)
-           }
-       }
+        binding.edtSearch.setOnFocusChangeListener { view, b ->
+            if (b) {
+                val intent = Intent(requireContext(), Search_Activity::class.java)
+                startActivity(intent)
+            }
+        }
 
 
+        binding.edtSearch.setOnClickListener {
+            val intent = Intent(requireContext(), Search_Activity::class.java)
+            startActivity(intent)
 
+        }
 
 
         binding.chipAll.setOnClickListener {
-            setonClickviewAll("All categorys",22)
+            setonClickviewAll("All categorys", 22)
         }
 
         binding.vAllCrime.setOnClickListener {

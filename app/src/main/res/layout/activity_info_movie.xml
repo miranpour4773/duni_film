@@ -23,7 +23,6 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
-
             <ImageView
                 android:id="@+id/img_poster"
                 android:layout_width="match_parent"
@@ -31,12 +30,22 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
 
+
             <androidx.appcompat.widget.Toolbar
+                android:layout_marginTop="10dp"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+                <ImageView
+                    android:id="@+id/like"
+                    android:layout_marginEnd="21dp"
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_watchlist1"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"/>
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

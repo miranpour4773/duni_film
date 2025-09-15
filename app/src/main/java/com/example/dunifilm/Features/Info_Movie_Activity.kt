@@ -3,6 +3,7 @@ package com.example.dunifilm.Features
 import android.app.Dialog
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dunifilm.Features.Fragment.Adapter.Recycler_Actors
 import com.example.dunifilm.Modle.API_Manager
+import com.example.dunifilm.Modle.Like_Movie
 import com.example.dunifilm.Modle.Movie_Info
 import com.example.dunifilm.Modle.keySendMovieID
 import com.example.dunifilm.R
@@ -23,7 +25,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+object like{
+    val watchList : ArrayList<Like_Movie> = arrayListOf()
+}
 class Info_Movie_Activity : AppCompatActivity() {
+    lateinit var movie : Movie_Info
     val apiManager = API_Manager()
     lateinit var loadingDialog: AlertDialog
     lateinit var binding: ActivityInfoMovieBinding
@@ -32,6 +38,14 @@ class Info_Movie_Activity : AppCompatActivity() {
         binding = ActivityInfoMovieBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+
+
+        var likeMovie = false
+        binding.like.setImageResource(R.drawable.ic_watchlist1)
+
+
+
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -50,12 +64,29 @@ class Info_Movie_Activity : AppCompatActivity() {
         }
 
 
-        val movieId = intent.getIntExtra(keySendMovieID, 1)
+        val movieId = intent.getIntExtra(keySendMovieID, -1)
+        if (like.watchList.any { it.filmId == movieId }){
+            likeMovie = true
+            binding.like.setImageResource(R.drawable.ic_watchlist_fill)
+        }
+        binding.like.setOnClickListener {
+            if (likeMovie == false){
+                likeMovie = true
+                like.watchList.add(0, Like_Movie(movieId ,movie))
+                binding.like.setImageResource(R.drawable.ic_watchlist_fill)
+                Log.v("1231123" , like.watchList.toString())
+            }else{
+                likeMovie = false
+                like.watchList.removeIf { it.filmId == movieId }
+                binding.like.setImageResource(R.drawable.ic_watchlist1)
+                Log.v("1231123" , like.watchList.toString())
 
-
+            }
+        }
 
         apiManager.apiService.getMovieInfo(movieId).enqueue(object : Callback<Movie_Info> {
             override fun onResponse(call: Call<Movie_Info>, response: Response<Movie_Info>) {
+                movie = response.body()!!
                 initUi(response.body()!!)
                 loadingDialog.dismiss()
             }

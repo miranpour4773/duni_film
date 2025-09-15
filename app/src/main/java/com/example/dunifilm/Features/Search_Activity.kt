@@ -1,10 +1,13 @@
 package com.example.dunifilm.Features
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -12,17 +15,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dunifilm.Features.Fragment.Adapter.Special_Genres_Adpter
+import com.example.dunifilm.Features.Fragment.Adapter.HistoryAdapter
+import com.example.dunifilm.Features.Fragment.Adapter.SearchAdapter
 import com.example.dunifilm.Modle.API_Manager
 import com.example.dunifilm.Modle.Movie
 import com.example.dunifilm.Modle.keySendMovieID
 import com.example.dunifilm.R
 import com.example.dunifilm.databinding.ActivitySearchBinding
 
-class Search_Activity : AppCompatActivity(), Special_Genres_Adpter.sendData {
+class Search_Activity : AppCompatActivity(), SearchAdapter.WorkOOnItem {
+    lateinit var historyAdapter: HistoryAdapter
     var apiManager = API_Manager()
+    lateinit var historySearch: ArrayList<String>
     lateinit var loadingDialog: AlertDialog
     lateinit var txt_search: String
     var layoutNumber: Int = 1
@@ -48,6 +54,20 @@ class Search_Activity : AppCompatActivity(), Special_Genres_Adpter.sendData {
             onBackPressed()
         }
 
+        binding.recyclerView.visibility = View.INVISIBLE
+        binding.historyRecycler.visibility = View.INVISIBLE
+
+       historySearch = arrayListOf()
+       val adapter = HistoryAdapter(historySearch,{ item ->
+           // وقتی روی آیتم کلیک شد
+           binding.search.setQuery(item, false)  // نمایش متن در SearchView
+           serch(item)  // اجرای تابع search
+       })
+       binding.historyRecycler.adapter = adapter
+       binding.historyRecycler.layoutManager =
+           LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+
         // edt text in searchbar
         val searchText =
             binding.search.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
@@ -67,21 +87,22 @@ class Search_Activity : AppCompatActivity(), Special_Genres_Adpter.sendData {
             binding.search.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
         ic_clear.setColorFilter(Color.WHITE)
 
+
         // done
         binding.search.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-                    if (query.length > 0) {
-                        serch(query)
-                    }
-                }
+                serch(query!!)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+                  adapter.filter(newText.orEmpty()) // فیلتر کردن لیست بر اساس تایپ کاربر
+                binding.historyRecycler.visibility = View.VISIBLE
+                binding.NOTFOUND1.visibility = View.INVISIBLE
+                binding.NOTFOUND.visibility = View.INVISIBLE
+                binding.NOTFOUND2.visibility = View.INVISIBLE
+                return true
             }
-
         })
 
         val dialogView = layoutInflater.inflate(R.layout.loadinf_dialog, null)
@@ -89,7 +110,7 @@ class Search_Activity : AppCompatActivity(), Special_Genres_Adpter.sendData {
         builder.setView(dialogView)
         loadingDialog = builder.create()
 
-        loadingDialog.window?.setBackgroundDrawableResource(R.color.shafaf)
+        loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         loadingDialog.setCancelable(false)
         val scale = resources.displayMetrics.density
         val sizeXY = (250 * scale).toInt()
@@ -102,25 +123,46 @@ class Search_Activity : AppCompatActivity(), Special_Genres_Adpter.sendData {
         loadingDialog.show()
         apiManager.searchMovies(text, object : API_Manager.apiCallBack<Movie> {
             override fun onSuccess(data: Movie) {
-                binding.recyclerView.adapter =
-                    Special_Genres_Adpter(data.data, this@Search_Activity)
-                binding.recyclerView.layoutManager =
-                    GridLayoutManager(this@Search_Activity, 2, RecyclerView.VERTICAL, false)
+                if (data.data.isNotEmpty()) {
+                    binding.recyclerView.adapter =
+                        SearchAdapter(data.data, this@Search_Activity )
+                    binding.recyclerView.layoutManager =
+                        LinearLayoutManager(this@Search_Activity,  RecyclerView.VERTICAL, false)
+                    if (!historySearch.contains(text)) {
+                        historySearch.add(0, text) // ابتدای لیست اضافه میشه
+                        binding.historyRecycler.adapter?.notifyItemInserted(0)
+                        binding.recyclerView.visibility = View.VISIBLE
+                    }
+                } else {
+                    binding.NOTFOUND1.visibility = View.VISIBLE
+                    binding.NOTFOUND.visibility = View.VISIBLE
+                    binding.NOTFOUND2.visibility = View.VISIBLE
+                    if (!historySearch.contains(text)) {
+                        historySearch.add(0, text) // ابتدای لیست اضافه میشه
+                        binding.historyRecycler.adapter?.notifyItemInserted(0)
+                        binding.historyRecycler.visibility = View.VISIBLE
+                        // فیلم پیدا نشد
+                        binding.recyclerView.visibility = View.INVISIBLE
+                        binding.historyRecycler.visibility = View.VISIBLE
+                    }
 
-                loadingDialog.dismiss()
+                    loadingDialog.dismiss()
+                }
             }
 
             override fun onError(errorMessage: String) {
-
+//            binding.recyclerView.visibility = View.GONE
+//            binding.historyRecycler.visibility = View.VISIBLE
+                loadingDialog.dismiss()
             }
-
         })
     }
 
-    override fun clickOnMovie(film_id: Int) {
-        val intent = Intent(this, Info_Movie_Activity::class.java)
-        intent.putExtra(keySendMovieID, film_id)
-        startActivity(intent)
 
-    }
+
+    override fun clickOnItem(filmid: Int) {
+        val intent = Intent(this, Info_Movie_Activity::class.java)
+        intent.putExtra(keySendMovieID, filmid)
+        startActivity(intent)    }
+
 }

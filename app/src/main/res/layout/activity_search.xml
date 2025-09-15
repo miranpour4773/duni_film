@@ -25,6 +25,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
     <!-- Search Box -->
 
     <androidx.appcompat.widget.SearchView
@@ -43,8 +44,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
+
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="21dp"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,6 +56,63 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="130dp"
+        android:id="@+id/history_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/txt_history" />
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/NOTFOUND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_not_found"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:visibility="invisible"
+
+        android:id="@+id/NOTFOUND1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Not Found"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/NOTFOUND"
+        app:layout_constraintStart_toStartOf="@+id/NOTFOUND"
+        app:layout_constraintTop_toBottomOf="@+id/NOTFOUND" />
+
+    <TextView
+        android:visibility="invisible"
+
+        android:id="@+id/NOTFOUND2"
+        android:layout_marginTop="20dp"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="We are sorry we cannot find the movie.
+We are constantly updating the app to
+contain all what you want."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/NOTFOUND"
+        app:layout_constraintStart_toStartOf="@+id/NOTFOUND"
+        app:layout_constraintTop_toBottomOf="@+id/NOTFOUND1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

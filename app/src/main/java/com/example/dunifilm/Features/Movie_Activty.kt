@@ -1,8 +1,11 @@
 package com.example.dunifilm.Features
 
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -18,6 +21,7 @@ import com.example.dunifilm.Modle.keyGenresName
 import com.example.dunifilm.Modle.keySendMovieID
 import com.example.dunifilm.R
 import com.example.dunifilm.databinding.MovieActivtyBinding
+import androidx.core.graphics.drawable.toDrawable
 
 class Movie_Activty : AppCompatActivity(), Special_Genres_Adpter.sendData {
     lateinit var listData: List<Movie.Data>
@@ -88,7 +92,8 @@ class Movie_Activty : AppCompatActivity(), Special_Genres_Adpter.sendData {
         val builder = AlertDialog.Builder(this)
         builder.setView(dialogView)
         loadingDialog = builder.create()
-        loadingDialog.window?.setBackgroundDrawableResource(R.color.shafaf)
+        loadingDialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        loadingDialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
         loadingDialog.show()
 
         val scale = resources.displayMetrics.density
